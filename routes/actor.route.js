@@ -7,6 +7,7 @@ router.get('/', async function (req, res) {
         const list = await actorModel.findAll();
         res.json(list);
     } catch (error) {
+        console.log(error);
         res.status(400).json({
             msg: 'bad request'
         })
@@ -24,6 +25,7 @@ router.get('/:id', async function (req, res) {
         }
         res.json(actor);
     } catch (error) {
+        console.log(error);
         res.status(400).json({
             msg: 'bad request'
         })
@@ -44,6 +46,7 @@ router.post('/', async function (req, res) {
             msg: 'add success'
         });
     } catch (error) {
+        console.log(error);
         res.status(400).json({
             msg: 'bad request'
         })
@@ -60,6 +63,7 @@ router.delete('/:id', async function (req, res) {
             affected: n
         });
     } catch (error) {
+        console.log(error);
         res.status(400).json({
             msg: 'bad request'
         })
@@ -77,6 +81,7 @@ router.patch('/:id', async function (req, res) {
             affected: n
         });
     } catch (error) {
+        console.log(error);
         res.status(400).json({
             msg: 'bad request'
         })
