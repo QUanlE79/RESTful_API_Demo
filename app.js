@@ -4,13 +4,10 @@ import morgan from "morgan";
 import actorRoute from "./routes/actor.route.js";
 import filmRoute from "./routes/film.route.js";
 import cors from "cors";
-
-
-import actorRoute from "./routes/actor.route.js"
 import swaggerJSDoc from "swagger-jsdoc";
 import SwaggerUi from "swagger-ui-express";
 import option from './docs/openapi.js'
-import cors from "cors"
+
 const app = express();
 
 
