@@ -6,7 +6,7 @@ import filmRoute from "./routes/film.route.js";
 import cors from "cors";
 import swaggerJSDoc from "swagger-jsdoc";
 import SwaggerUi from "swagger-ui-express";
-import option from './docs/openapi.js'
+import swaggerOption from './docs/swaggerOption.js'
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
-const swaggerDocs = swaggerJSDoc(option.option);
+const swaggerDocs = swaggerJSDoc(swaggerOption.option);
 app.use('/api-docs', SwaggerUi.serve, SwaggerUi.setup(swaggerDocs));
 
 app.get('/', (req,res)=>{
