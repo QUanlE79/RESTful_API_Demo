@@ -4,6 +4,7 @@ export default function (schema) {
         const ajv = new Ajv()
         const valid = ajv.validate(schema, req.body)
         if (!valid) {
+            console.log(ajv.errors);
             return res.status(400).json(ajv.errors)
         }
         next();
