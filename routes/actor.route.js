@@ -7,7 +7,7 @@ const router = express.Router()
 router.get('/', async function (req, res) {
     try {
         const list = await actorModel.findAll();
-        res.json(list);
+        res.status(200).json(list);
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -21,7 +21,7 @@ router.get('/:id', async function (req, res) {
     try {
         const actor = await actorModel.findById(id);
         if (actor === null) {
-            return res.status(404).json({
+            return res.status(400).json({
                 msg: 'actor not found'
             });
         }
@@ -61,10 +61,20 @@ router.delete('/:id', async function (req, res) {
     const id = req.params.id || 0;
     try {
         const n = await actorModel.del(id);
-        res.json({
+        if(n<=0){
+            return res.status(400).json({
+                msg:"ID not found"
+            })
+            
+            
+        }
+        
+        return res.status(200).json({
             msg: 'delete success',
             affected: n
         });
+        
+        
     } catch (error) {
         console.log(error);
         res.status(500).json({
@@ -80,7 +90,15 @@ router.patch('/:id', validate(actorSchemas.actor_update_schema), async function 
     const film = req.body;
     try {
         const n = await actorModel.patch(id, film);
-        res.json({
+         if(n<=0){
+            return res.status(400).json({
+                msg:"ID not found"
+            })
+            
+            
+        }
+        
+        return res.status(200).json({
             msg: 'update success',
             affected: n
         });
