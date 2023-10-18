@@ -39,6 +39,7 @@ router.get('/:id', async function (req, res) {
 
 router.post('/', validate(filmSchemas.film_schema), async function (req, res) {
     let film = req.body;
+    console.log(film)
     try {
         const ret = await filmModel.add(film);
         film = {

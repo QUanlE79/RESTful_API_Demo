@@ -2,7 +2,6 @@ export default {
   option:
   {
     "definition": {
-
       "openapi": "3.0.0",
       "servers": [
         {
@@ -36,6 +35,9 @@ export default {
               "required": true,
               "content": {
                 "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/actor_schema"
+                  },
                   "examples": {
                     "actorExample": {
                       "summary": "Example of an actor object",
@@ -105,6 +107,9 @@ export default {
               "required": true,
               "content": {
                 "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/actor_schema"
+                  },
                   "examples": {
                     "actorExample": {
                       "summary": "Example of an actor object",
@@ -137,20 +142,7 @@ export default {
                 "description": "Lấy tất cả phim"
               }
             }
-          }
-        },
-        "/films/{id}": {
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "schema": {
-                "type": "integer"
-              },
-              "description": "ID của film"
-            }
-          ],
+          },
           "post": {
             "summary": "Thêm một bộ phim mới",
             "tags": [
@@ -161,37 +153,23 @@ export default {
               "content": {
                 "application/json": {
                   "schema": {
-                    "type": "object",
-                    "properties": {
-                      "title": {
-                        "type": "string"
-                      },
-                      "description": {
-                        "type": "string"
-                      },
-                      "release_year": {
-                        "type": "integer"
-                      },
-                      "language_id": {
-                        "type": "integer"
-                      },
-                      "rental_duration": {
-                        "type": "integer"
-                      },
-                      "rental_rate": {
-                        "type": "number"
-                      },
-                      "length": {
-                        "type": "integer"
-                      },
-                      "replacement_cost": {
-                        "type": "number"
-                      },
-                      "rating": {
-                        "type": "string"
-                      },
-                      "special_features": {
-                        "type": "string"
+                    "$ref": "#/components/schemas/film_schema"
+                  },
+                  "examples": {
+                    "filmExample": {
+                      "summary": "Example of a film object",
+                      "value": {
+                        "title": "Academy Hero",
+                        "description": "A Epic Drama of a Feminist And a Mad Scientist who must Battle a Teacher in The Canadian Rockies",
+                        "release_year": 2020,
+                        "language_id": 2,
+                        "original_language_id": null,
+                        "rental_duration": 6,
+                        "rental_rate": 0.99,
+                        "length": 86,
+                        "replacement_cost": 20.99,
+                        "rating": "PG",
+                        "special_features": "Deleted Scenes, Behind the Scenes"
                       }
                     }
                   }
@@ -209,7 +187,20 @@ export default {
                 "description": "Lỗi server"
               }
             }
-          },
+          }
+        },
+        "/films/{id}": {
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "description": "ID của film"
+            }
+          ],
           "get": {
             "summary": "Lấy thông tin của bộ phim bằng ID",
             "description": "Trả về thông tin của một bộ phim dựa trên ID.",
@@ -249,8 +240,11 @@ export default {
               "required": true,
               "content": {
                 "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/film_schema"
+                  },
                   "examples": {
-                    "actorExample": {
+                    "filmExample": {
                       "summary": "Example of an actor object",
                       "value": {
                         "title": "ACADEMY DINOSAUR",
@@ -262,9 +256,8 @@ export default {
                         "rental_rate": 0.99,
                         "length": 86,
                         "replacement_cost": 20.99,
-                        "rating": 20.99,
-                        "special_features": "Deleted Scenes,Behind the Scenes",
-                        "last_update": "2006-02-15T05:03:42.000Z"
+                        "rating": "20.99",
+                        "special_features": "Deleted Scenes,Behind the Scenes"
                       }
                     }
                   }
@@ -279,6 +272,77 @@ export default {
                 "description": "Không tìm thấy ID của phim"
               }
             }
+          }
+        }
+      },
+      "components": {
+        "schemas": {
+          "actor_schema": {
+            "type": "object",
+            "properties": {
+              "first_name": {
+                "type": "string",
+                "description": "Tên của diễn viên."
+              },
+              "last_name": {
+                "type": "string",
+                "description": "Họ của diễn viên."
+              }
+            },
+            "required": [
+              "first_name",
+              "last_name"
+            ]
+          },
+          "film_schema": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "description": "Tiêu đề của bộ phim."
+              },
+              "description": {
+                "type": "string",
+                "description": "Mô tả về bộ phim."
+              },
+              "release_year": {
+                "type": "integer",
+                "description": "Năm phát hành của bộ phim."
+              },
+              "language_id": {
+                "type": "integer",
+                "description": "ID ngôn ngữ của bộ phim."
+              },
+              "rental_duration": {
+                "type": "integer",
+                "description": "Thời lượng cho thuê của bộ phim (số ngày)."
+              },
+              "rental_rate": {
+                "type": "number",
+                "description": "Giá thuê của bộ phim."
+              },
+              "length": {
+                "type": "integer",
+                "description": "Độ dài của bộ phim (phút)."
+              },
+              "replacement_cost": {
+                "type": "number",
+                "description": "Giá thay thế của bộ phim."
+              },
+              "rating": {
+                "type": "string",
+                "description": "Phân loại của bộ phim."
+              },
+              "special_features": {
+                "type": "string",
+                "description": "Các tính năng đặc biệt của bộ phim."
+              }
+            },
+            "required": [
+              "title",
+              "description",
+              "language_id"
+            ]
           }
         }
       }

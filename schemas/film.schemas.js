@@ -42,9 +42,9 @@ export default{
                 ],
                 "default": null
             },
-            "language_id ": {
-                "$id": "#root/language_id ", 
-                "title": "Language_id ", 
+            "language_id": {
+                "$id": "#root/language_id", 
+                "title": "Language_id", 
                 "type": "integer",
                 "examples": [
                     1
@@ -180,9 +180,9 @@ export default{
                 ],
                 "default": null
             },
-            "language_id ": {
-                "$id": "#root/language_id ", 
-                "title": "Language_id ", 
+            "language_id": {
+                "$id": "#root/language_id", 
+                "title": "Language_id", 
                 "type": "integer",
                 "examples": [
                     1
