@@ -97,6 +97,7 @@ export default{
                 "$id": "#root/rating", 
                 "title": "Rating", 
                 "type": "string",
+                "enum": ["G", "PG", "PG-13", "R", "NC-17"],
                 "default": "G",
                 "examples": [
                     "PG"
@@ -107,6 +108,7 @@ export default{
                 "$id": "#root/special_features", 
                 "title": "Special_features", 
                 "type": "string",
+                "enum": ["Trailers", "Commentaries", "Deleted Scenes", "Behind the Scenes"],
                 "default": null,
                 "examples": [
                     "Deleted Scenes,Behind the Scenes"
