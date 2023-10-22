@@ -1,7 +1,8 @@
 
 export default{
     film_schema:{
-        "definitions": {},
+        "definitions": {
+        },
         "$schema": "http://json-schema.org/draft-07/schema#", 
         "$id": "https://example.com/object1697527931.json", 
         "title": "Root", 
@@ -105,15 +106,10 @@ export default{
                 "pattern": "^.*$"
             },
             "special_features": {
-                "$id": "#root/special_features", 
-                "title": "Special_features", 
+                "$id": "#root/special_features",
+                "title": "Special_features",
                 "type": "string",
-                "enum": ["Trailers", "Commentaries", "Deleted Scenes", "Behind the Scenes"],
-                "default": null,
-                "examples": [
-                    "Deleted Scenes,Behind the Scenes"
-                ],
-                "pattern": "^.*$"
+                "pattern": "^(Trailers|Commentaries|Deleted Scenes|Behind the Scenes)(,\\s*Trailers|,\\s*Commentaries|,\\s*Deleted Scenes|,\\s*Behind the Scenes)*$"
             }
         }
     },
@@ -237,6 +233,7 @@ export default{
                 "$id": "#root/rating", 
                 "title": "Rating", 
                 "type": "string",
+                "enum": ["G", "PG", "PG-13", "R", "NC-17"],
                 "default": "G",
                 "examples": [
                     "PG"
@@ -244,14 +241,10 @@ export default{
                 "pattern": "^.*$"
             },
             "special_features": {
-                "$id": "#root/special_features", 
-                "title": "Special_features", 
+                "$id": "#root/special_features",
+                "title": "Special_features",
                 "type": "string",
-                "default": null,
-                "examples": [
-                    "Deleted Scenes,Behind the Scenes"
-                ],
-                "pattern": "^.*$"
+                "pattern": "^(Trailers|Commentaries|Deleted Scenes|Behind the Scenes)(,\\s*Trailers|,\\s*Commentaries|,\\s*Deleted Scenes|,\\s*Behind the Scenes)*$"
             }
         },
         "additionalProperties":false
