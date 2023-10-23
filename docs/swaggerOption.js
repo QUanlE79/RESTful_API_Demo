@@ -1,6 +1,4 @@
 export default {
-  option:
-  {
     "definition": {
       "openapi": "3.0.0",
       "servers": [
@@ -12,13 +10,23 @@ export default {
         "title": "Sakila API",
         "version": "1.0.0"
       },
+      "tags": [
+        {
+          "name": "Actor",
+          "description": "Everything about Actor"
+        },
+        {
+          "name": "Film",
+          "description": "Everything about Film"
+        }
+      ],
       "paths": {
         "/actors": {
           "get": {
-            "summary": "Lấy danh sách các diễn viên",
             "tags": [
-              "Get all actor"
+              "Actor"
             ],
+            "summary": "Lấy danh sách các diễn viên",
             "responses": {
               "200": {
                 "description": "Danh sách diễn viên đã được trả về thành công"
@@ -26,10 +34,10 @@ export default {
             }
           },
           "post": {
-            "summary": "Thêm một diễn viên mới",
             "tags": [
-              "Add an actor"
+              "Actor"
             ],
+            "summary": "Thêm một diễn viên mới",
             "requestBody": {
               "description": "Thông tin diễn viên mới",
               "required": true,
@@ -71,7 +79,7 @@ export default {
           ],
           "get": {
             "tags": [
-              "Get an actor by id"
+              "Actor"
             ],
             "summary": "Lấy thông tin của diễn viên bằng ID",
             "responses": {
@@ -85,7 +93,7 @@ export default {
           },
           "delete": {
             "tags": [
-              "Delete an actor by id"
+              "Actor"
             ],
             "summary": "Xóa diễn viên bằng ID",
             "responses": {
@@ -99,7 +107,7 @@ export default {
           },
           "patch": {
             "tags": [
-              "Update an actor"
+              "Actor"
             ],
             "summary": "Cập nhật thông tin của một diễn viên bằng ID",
             "requestBody": {
@@ -133,10 +141,10 @@ export default {
         },
         "/films": {
           "get": {
-            "summary": "Lấy danh sách phim",
             "tags": [
-              "Get all films"
+              "Film"
             ],
+            "summary": "Lấy danh sách phim",
             "responses": {
               "200": {
                 "description": "Lấy tất cả phim"
@@ -144,10 +152,10 @@ export default {
             }
           },
           "post": {
-            "summary": "Thêm một bộ phim mới",
             "tags": [
-              "Add a film"
+              "Film"
             ],
+            "summary": "Thêm một bộ phim mới",
             "requestBody": {
               "required": true,
               "content": {
@@ -202,11 +210,11 @@ export default {
             }
           ],
           "get": {
+            "tags": [
+              "Film"
+            ],
             "summary": "Lấy thông tin của bộ phim bằng ID",
             "description": "Trả về thông tin của một bộ phim dựa trên ID.",
-            "tags": [
-              "Get a film by id"
-            ],
             "responses": {
               "200": {
                 "description": "Thông tin của bộ phim đã được trả về thành công."
@@ -218,7 +226,7 @@ export default {
           },
           "delete": {
             "tags": [
-              "Delete a film by id"
+              "Film"
             ],
             "summary": "Xóa film bằng ID",
             "responses": {
@@ -232,7 +240,7 @@ export default {
           },
           "patch": {
             "tags": [
-              "Update a film"
+              "Film"
             ],
             "summary": "Cập nhật thông tin của một phim bằng ID",
             "requestBody": {
@@ -348,6 +356,6 @@ export default {
       }
     },
     "apis": []
-  }
+  
 }
 
