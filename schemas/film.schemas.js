@@ -244,7 +244,9 @@ export default{
                 "$id": "#root/special_features",
                 "title": "Special_features",
                 "type": "string",
-                "pattern": "^(Trailers|Commentaries|Deleted Scenes|Behind the Scenes)(,\\s*Trailers|,\\s*Commentaries|,\\s*Deleted Scenes|,\\s*Behind the Scenes)*$"
+                // "pattern": "^(Trailers|Commentaries|Deleted Scenes|Behind the Scenes)(,\\s*Trailers|,\\s*Commentaries|,\\s*Deleted Scenes|,\\s*Behind the Scenes)*$"
+                "validate": "validateSpecialFeaturesFunction",
+                "pattern": "^.*$"
             }
         },
         "additionalProperties":false
