@@ -7,7 +7,8 @@ import cors from "cors";
 import swaggerJSDoc from "swagger-jsdoc";
 import SwaggerUi from "swagger-ui-express";
 import swaggerOption from './docs/swaggerOption.js'
-// import swaggerDocJSON from './docs/swaggerOption.json'  assert { type: 'json' };
+//import swaggerDocJSON from './docs/swagger-output.json'  assert { type: 'json' };
+//import swaggerDocJSON from './docs/swaggerOption.js'  assert { type: 'json' };
 // import jsYaml from 'js-yaml'
 // import fs from 'fs'
 const app = express();
