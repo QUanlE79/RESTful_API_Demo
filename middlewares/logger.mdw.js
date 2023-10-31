@@ -11,7 +11,7 @@ const routeLogger = expressWinston.logger({
         if (res.statusCode == 401 || res.statusCode == 403) { level = "critical"; }
         return level;
       },format: format.combine(
-          format.timestamp(),
+          format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss', tz: 'Asia/Ho_Chi_Minh' }),
         format.label({ label: 'SAKILA API' }),
         format.json()
     ),

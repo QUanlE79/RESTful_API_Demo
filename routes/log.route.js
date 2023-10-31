@@ -7,13 +7,11 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     const logs = await processLogFiles('./logs')
-    console.log(logs);
     res.json( logs );
 });
 
 router.get('/filter', async (req, res) => {
     const logs = await processLogFiles('./logs')
-    console.log(logs);
     res.json( logs );
 });
 
