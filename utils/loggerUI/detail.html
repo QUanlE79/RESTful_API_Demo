@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Xem thông tin đối tượng JSON</title>
+</head>
+<body>
+    <h1>Thông tin đối tượng JSON</h1>
+    <script>
+        // Lấy tham số truy vấn từ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const dataParam = urlParams.get('data');
+
+        // Chuyển chuỗi JSON thành đối tượng JavaScript
+        const data = JSON.parse(dataParam);
+
+        alert(data); // Hiển thị "John"
+    </script>
+</body>
+</html>

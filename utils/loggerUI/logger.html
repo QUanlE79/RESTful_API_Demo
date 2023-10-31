@@ -55,6 +55,7 @@
                 <th>Response Time</th>
                 <th>Status code</th>
                 <th>Created Time</th>
+                <th>Detail</th>
               </tr>
             </thead>
             <tbody id="log-container"></tbody>
@@ -108,7 +109,9 @@
                       <td>${log.meta.req.url}</td>
                       <td>${log.meta.responseTime}ms</td>
                       <td>${log.meta.res.statusCode} </td>
-                      <td>${log.timestamp}</td>                    
+                      <td>${log.timestamp}</td>    
+                      <td><a href="detail.html?data=${log}">See more</a>
+                      </td>                
                     </tr>`;
               $('#log-container').append(tr);
             }
