@@ -2,10 +2,14 @@ import express from "express";
 import filmModel from "../models/film.model.js";
 import validate from "../middlewares/validate.mdw.js"
 import filmSchemas from "../schemas/film.schemas.js";
+import { routeLogger } from '../middlewares/logger.mdw.js'
 
 
 const router = express.Router();
 
+
+
+router.use(routeLogger);
 router.get('/', async function (req, res) {
     try {
         const list = await filmModel.findAll();

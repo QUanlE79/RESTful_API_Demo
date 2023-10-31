@@ -7,7 +7,7 @@ import cors from "cors";
 import swaggerJSDoc from "swagger-jsdoc";
 import SwaggerUi from "swagger-ui-express";
 import swaggerOption from './docs/swaggerOption.js'
-
+import logRoute from './routes/log.route.js'
 const app = express();
 
 app.use(cors());
@@ -30,7 +30,7 @@ app.get('/', (req,res)=>{
 
 app.use('/api/v1/actors',actorRoute);
 app.use('/api/v1/films',filmRoute);
-
+app.use('/api/v1/logs',logRoute)
 
 
 app.listen(process.env.PORT, ()=>{
