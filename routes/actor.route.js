@@ -4,6 +4,11 @@ import validate from "../middlewares/validate.mdw.js"
 import actorSchemas from "../schemas/actor.schemas.js"
 const router = express.Router()
 
+import { routeLogger } from '../middlewares/logger.mdw.js'
+
+
+
+router.use(routeLogger);
 router.get('/', async function (req, res) {
     try {
         const list = await actorModel.findAll();
@@ -15,7 +20,6 @@ router.get('/', async function (req, res) {
         })
     }
 })
-
 router.get('/:id', async function (req, res) {
     const id = req.params.id || 0;
     try {
@@ -110,5 +114,4 @@ router.patch('/:id', validate(actorSchemas.actor_update_schema), async function 
     }
 
 })
-
 export default router;
