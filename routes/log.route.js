@@ -15,5 +15,10 @@ router.get('/filter', async (req, res) => {
     res.json( logs );
 });
 
+router.post('/', async (req,res,next) => {
+    const log = req.body;
+    console.log(log);
+})
+
 
 export default router;

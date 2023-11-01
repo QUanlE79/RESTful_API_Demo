@@ -97,12 +97,16 @@
         if (!toValid) {
           toDateTime = new Date();
         }
-        console.log(res);
+        // console.log(res);
         for (const log of res) {
+          // console.log();
           if (log.meta.req.url.includes(searchValue)) {
             var logDateTime = new Date(log.timestamp);
             if (!fromValid || logDateTime >=  fromDateTime && logDateTime <= toDateTime){
             if (selectedValue === "all" || log.level.includes(selectedValue)) {
+              const jsonData = JSON.stringify(log);
+              const encodedData = encodeURIComponent(jsonData);
+
               const tr = `<tr>
                       <td>${log.level}</td>
                       <td>${log.meta.req.method}</td>
@@ -110,7 +114,7 @@
                       <td>${log.meta.responseTime}ms</td>
                       <td>${log.meta.res.statusCode} </td>
                       <td>${log.timestamp}</td>    
-                      <td><a href="detail.html?data=${log}">See more</a>
+                      <td><a href="detail.html?data=${encodedData}">See more</a>
                       </td>                
                     </tr>`;
               $('#log-container').append(tr);
