@@ -13,12 +13,7 @@ function dynamicMeta(req, res) {
 const url='mongodb+srv://ocean2162002:duong123@cluster0.rri6aae.mongodb.net/?retryWrites=true&w=majority'
 mongoose.connect(url);
 
-// Create a MongoDB schema for logs
-const logSchema = new mongoose.Schema({
-  timestamp: Date,
-  level: String,
-  message: String,
-});
+
 
 
 const transportMongoDB = new winston.transports.MongoDB({
@@ -32,7 +27,7 @@ const transportMongoDB = new winston.transports.MongoDB({
     format.metadata()
   ),
 });
-const Log = mongoose.model('Log', logSchema);
+
 
 
 const routeLogger = expressWinston.logger({
