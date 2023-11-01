@@ -97,9 +97,9 @@
         if (!toValid) {
           toDateTime = new Date();
         }
-        // console.log(res);
+        console.log(res);
         for (const log of res) {
-          // console.log();
+          
           if (log.meta.req.url.includes(searchValue)) {
             var logDateTime = new Date(log.timestamp);
             if (!fromValid || logDateTime >=  fromDateTime && logDateTime <= toDateTime){
