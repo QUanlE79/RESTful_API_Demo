@@ -24,20 +24,36 @@
             <dt class="col-sm-3 text-truncate">Meta
                 <dd class="col-sm-9" id="accordion">
                     <div class="card">
-                        <div class="card-header" id="headingOne">
+                        <div class="card-header" id="bodyHeading">
                           <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              Request
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseBody" aria-expanded="true" aria-controls="collapseBody">
+                              Body
                             </button>
                           </h5>
                         </div>
                     
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                          <div class="card-body" id="req">
+                        <div id="collapseBody" class="collapse show" aria-labelledby="bodyHeading" data-parent="#accordion">
+                          <div class="card-body" id="body">
                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                           </div>
                         </div>
                     </div>
+
+                    <div class="card">
+                      <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Request
+                          </button>
+                        </h5>
+                      </div>
+                  
+                      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body" id="req">
+                          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                      </div>
+                  </div>
 
                     <div class="card">
                         <div class="card-header" id="headingTwo">
@@ -97,12 +113,14 @@
             const msgElement = document.getElementById('msg');
             const timeElement = document.getElementById('time');
             const resTimeElement = document.getElementById('resTime');
+            const bodyElement = document.getElementById('body');
             const reqElement = document.getElementById('req');
             const resElement = document.getElementById('res');
             labelElement.innerText = jsonData.label;
             levelElement.innerText = jsonData.level;
             msgElement.innerText = jsonData.message;
             timeElement.innerText = jsonData.timestamp;
+            bodyElement.innerText = JSON.stringify(jsonData.meta.body,null,2);
             reqElement.innerText = JSON.stringify(jsonData.meta.req,null,2);
             resElement.innerText = JSON.stringify(jsonData.meta.res,null,2);
             resTimeElement.innerText = jsonData.meta.responseTime;
