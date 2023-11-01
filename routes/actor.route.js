@@ -2,13 +2,12 @@ import express from "express";
 import actorModel from "../models/actor.model.js";
 import validate from "../middlewares/validate.mdw.js"
 import actorSchemas from "../schemas/actor.schemas.js"
-const router = express.Router()
-
 import { routeLogger } from '../middlewares/logger.mdw.js'
 
-
+const router = express.Router()
 
 router.use(routeLogger);
+
 router.get('/', async function (req, res) {
     try {
         const list = await actorModel.findAll();
