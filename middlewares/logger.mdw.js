@@ -1,13 +1,38 @@
 import { createLogger, transports, format } from 'winston';
 import expressWinston from 'express-winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
-
+import mongoose from 'mongoose';
+import WinstonMongoDB from 'winston-mongodb';
+import winston from 'winston';
 function dynamicMeta(req, res) {
   return {
     body: req.body,
     params: req.params,
   };
 }
+const url='mongodb+srv://ocean2162002:duong123@cluster0.rri6aae.mongodb.net/?retryWrites=true&w=majority'
+mongoose.connect(url);
+
+// Create a MongoDB schema for logs
+const logSchema = new mongoose.Schema({
+  timestamp: Date,
+  level: String,
+  message: String,
+});
+
+
+const transportMongoDB = new winston.transports.MongoDB({
+  db: url,
+  options: { useUnifiedTopology: true },
+  collection: 'logs',
+  format: format.combine(
+    format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss', tz: 'Asia/Ho_Chi_Minh' }),
+    format.label({ label: 'SAKILA API' }),
+    format.json(),
+    format.metadata()
+  ),
+});
+const Log = mongoose.model('Log', logSchema);
 
 
 const routeLogger = expressWinston.logger({
@@ -32,8 +57,10 @@ const routeLogger = expressWinston.logger({
       maxSize: '20m',
       maxFiles: '14d',
     }),
+    transportMongoDB
   ],
   dynamicMeta: dynamicMeta, // Use the dynamicMeta function
+  meta:true
 });
 
 export { routeLogger }

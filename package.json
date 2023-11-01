@@ -18,13 +18,15 @@
     "express-winston": "^4.2.0",
     "js-yaml": "^4.1.0",
     "knex": "^3.0.1",
+    "mongoose": "^8.0.0",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "swagger-autogen": "^2.23.6",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
     "winston": "^3.11.0",
-    "winston-daily-rotate-file": "^4.7.1"
+    "winston-daily-rotate-file": "^4.7.1",
+    "winston-mongodb": "^5.1.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
