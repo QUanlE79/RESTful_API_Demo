@@ -3,8 +3,12 @@ import expressWinston from 'express-winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 
 function dynamicMeta(req, res) {
-  return { req: req };
+  return {
+    body: req.body,
+    params: req.params,
+  };
 }
+
 
 const routeLogger = expressWinston.logger({
   level: function (req, res) {
