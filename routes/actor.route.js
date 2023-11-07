@@ -3,12 +3,12 @@ import actorModel from "../models/actor.model.js";
 import validate from "../middlewares/validate.mdw.js"
 import actorSchemas from "../schemas/actor.schemas.js"
 import { routeLogger } from '../middlewares/logger.mdw.js'
-
+import {isAuthenticated} from "../middlewares/authentication.mdw.js";
 const router = express.Router()
 
 router.use(routeLogger);
 
-router.get('/', async function (req, res) {
+router.get('/', isAuthenticated, async function (req, res) {
     try {
         const list = await actorModel.findAll();
         res.status(200).json(list);
@@ -19,7 +19,7 @@ router.get('/', async function (req, res) {
         })
     }
 })
-router.get('/:id', async function (req, res) {
+router.get('/:id', isAuthenticated, async function (req, res) {
     const id = req.params.id || 0;
     try {
         const actor = await actorModel.findById(id);
@@ -38,7 +38,7 @@ router.get('/:id', async function (req, res) {
 
 })
 
-router.post('/', validate(actorSchemas.actor_schema), async function (req, res) {
+router.post('/', isAuthenticated ,validate(actorSchemas.actor_schema), async function (req, res) {
     let actor = req.body;
     try {
 
@@ -60,7 +60,7 @@ router.post('/', validate(actorSchemas.actor_schema), async function (req, res) 
 
 })
 
-router.delete('/:id', async function (req, res) {
+router.delete('/:id', isAuthenticated, async function (req, res) {
     const id = req.params.id || 0;
     try {
         const n = await actorModel.del(id);
@@ -88,7 +88,7 @@ router.delete('/:id', async function (req, res) {
 })
 
 
-router.patch('/:id', validate(actorSchemas.actor_update_schema), async function (req, res) {
+router.patch('/:id', isAuthenticated, validate(actorSchemas.actor_update_schema), async function (req, res) {
     const id = req.params.id || 0;
     const film = req.body;
     try {

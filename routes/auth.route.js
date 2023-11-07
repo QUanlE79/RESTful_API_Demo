@@ -1,8 +1,10 @@
 import express from 'express';
 import staffModel from '../models/staff.model.js';
 const router = express.Router();
-import bcrypt from 'bcrypt'
-
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { verifyRefresh } from '../middlewares/authentication.mdw.js';
+import _ from "../config/config.js";
 router.post('/login', async (req, res) => {
     try{
         const {username,password}=req.body
@@ -14,7 +16,14 @@ router.post('/login', async (req, res) => {
         const isMatchPassword= await bcrypt.compare(password,dbUser.password)
         console.log(isMatchPassword);
         if(isMatchPassword){
-            return res.status(200).json({ message: 'Login successful' });
+            const accessToken = jwt.sign({ username: username, password: password }, process.env.SECRET_ACCESS_KEY, {
+                expiresIn: "1m",
+                });
+            const refreshToken = jwt.sign({ username: username, password: password }, process.env.SECRET_REFRESH_KEY, {
+                expiresIn: "100m",
+                });
+            return res.status(200).json({ accessToken, refreshToken });
+            
         } else {
           // Passwords do not match, authentication failed
           return res.status(401).json({ error: 'Invalid credentials' });
@@ -47,5 +56,17 @@ router.post('/signup', async (req, res) => {
     }
    
 });
-
+router.post("/refresh", (req, res) => {
+    const { username, password, refreshToken } = req.body;
+    const isValid = verifyRefresh(username, password, refreshToken);
+    if (!isValid) {
+    return res
+    .status(401)
+    .json({ success: false, error: "Invalid token,try login again" });
+    }
+    const accessToken = jwt.sign({ username: username, password:password }, process.env.SECRET_ACCESS_KEY, {
+    expiresIn: "2m",
+    });
+    return res.status(200).json({ success: true, accessToken });
+});
 export default router;
