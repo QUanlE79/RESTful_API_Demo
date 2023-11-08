@@ -17,12 +17,15 @@ router.post('/login', async (req, res) => {
         console.log(isMatchPassword);
         if(isMatchPassword){
             const accessToken = jwt.sign({ username: username, password: password }, process.env.SECRET_ACCESS_KEY, {
-                expiresIn: "1m",
-                });
-            const refreshToken = jwt.sign({ username: username, password: password }, process.env.SECRET_REFRESH_KEY, {
                 expiresIn: "100m",
                 });
-            return res.status(200).json({ accessToken, refreshToken });
+            const refreshToken = jwt.sign({ username: username, password: password }, process.env.SECRET_REFRESH_KEY, {
+                expiresIn: "1000m",
+                });
+            return res.status(200).json({ 
+                success: true,
+                accessToken,
+                refreshToken });
             
         } else {
           // Passwords do not match, authentication failed
